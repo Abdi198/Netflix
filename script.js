@@ -1,63 +1,42 @@
+// Shows arrays
+const dramas = ["The Crown", "Breaking Bad", "Stranger Things", "The Queen's Gambit", "Ozark"];
+const fantasies = ["The Witcher", "Game of Thrones", "The Mandalorian", "Shadow and Bone", "The Umbrella Academy"];
+const comedies = ["The Office", "Brooklyn Nine-Nine", "Parks and Recreation", "Arrested Development", "BoJack Horseman"];
 
-let dramaShows = [
-  "Ginny & Georgia",
-  "Outlander",
-  "Grey's Anatomy",
-  "Ozark",
-  "The Queen's Gambit"
-];
-
-let fantasyShows = [
-  "Supernatural",
-  "The Sandman",
-  "Wednesday",
-  "The Witcher",
-  "Avatar: The Last Airbender"
-];
-
-let comedyShows = [
-  "Arrested Development",
-  "Dead to Me",
-  "Seinfeld",
-  "Emily in Paris",
-  "The Good Place"
-];
-
-
+// Helper functions
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function displayShow(show) {
+  // Assume there's a function that handles the display of the show
+  document.getElementById('show-row').innerHTML = `<div class="col-md-4"><div class="card bg-dark text-white"><img src="https://via.placeholder.com/150" class="card-img" alt="${show}"><div class="card-img-overlay"><h5 class="card-title">${show}</h5></div></div></div>`;
+}
+
+// Function to choose a random genre
 function chooseRandomGenre() {
-  let genres = ['drama', 'fantasy', 'comedy'];
-  let randomIndex = getRandomNumber(0, genres.length - 1);
+  const genres = ["drama", "fantasy", "comedy"];
+  const randomIndex = getRandomNumber(0, genres.length - 1);
   return genres[randomIndex];
 }
 
-
-console.log(chooseRandomGenre());
-
+// Function to display a random show based on the genre
 function displayRandomShow(genre) {
-
-  if (genre === 'random') {
+  if (genre === "random") {
     genre = chooseRandomGenre();
-    console.log(`Random genre selected: ${genre}`);
   }
 
-  let shows;
-  if (genre === 'drama') {
-    shows = dramaShows;
-  } else if (genre === 'fantasy') {
-    shows = fantasyShows;
-  } else if (genre === 'comedy') {
-    shows = comedyShows;
+  let show;
+  switch (genre) {
+    case "drama":
+      show = dramas[getRandomNumber(0, dramas.length - 1)];
+      break;
+    case "fantasy":
+      show = fantasies[getRandomNumber(0, fantasies.length - 1)];
+      break;
+    case "comedy":
+      show = comedies[getRandomNumber(0, comedies.length - 1)];
+      break;
   }
-
-  if (shows) {
-    let randomIndex = getRandomNumber(0, shows.length - 1);
-    displayShow(shows[randomIndex]);
-  }
-  
+  displayShow(show);
 }
-
-
